@@ -1,0 +1,17 @@
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+
+block main
+    .detail-content 
+        h1.item-title #{blogPosts.title}
+        .basic-infor 
+            span.author #{blogPosts.author}
+            span.category #{blogPosts.category}
+            span.comment-count Comment 
+        img(
+            src=blogPosts.image
+            width= "100%"
+        )
+        .main-content !{blogPosts.content}
+
+        

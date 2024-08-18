@@ -1,0 +1,67 @@
+extends ../../layouts/default.pug 
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+
+block main
+    h1(class="site-title") RECYCLE BIN
+    .card.mb-3 
+        .card-header
+        .card-body 
+            .row 
+                .col-8 
+                .col-3
+                    +search(keyword)
+                
+    table(
+        class="post-table"
+    )
+        thead 
+            tr
+                th Title
+                th Image
+                th Description
+                th Delete Day
+                th Moderator
+                th Action
+        tbody
+            each item in blogPosts 
+                tr 
+                    td #{item.title}
+                    td 
+                        img(
+                            src=item.image
+                            alt=item.title 
+                            width="200px"
+                            height="auto"
+                        )
+                    td !{item.description}
+                    td #{moment(item.deletedAt).format('MMM DD YYYY HH:mm:ss')}
+                    td #{item.moderator}
+                    td 
+                        button(
+                            data-id = item.id 
+                            restore-button
+                            class="btn btn-success btn-sm ml-1"
+                        ) Restore
+                        button(
+                            data-id = item.id 
+                            delete-button2
+                            class="btn btn-danger btn-sm ml-1"
+                        ) Delete 
+
+    +pagination(pagination)
+
+    form(
+        action=""
+        method="POST"
+        id="form-delete-item2"
+        data-path=`${prefixAdmin}/recycle/delete`
+    )
+    form(
+        action=""
+        method="POST"
+        id="form-restore-item"
+        data-path=`${prefixAdmin}/recycle/restore`
+    )
+          
+    script(src="/admin/js/script.js")

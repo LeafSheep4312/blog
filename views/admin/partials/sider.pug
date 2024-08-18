@@ -1,0 +1,22 @@
+.sider
+    .inner-menu 
+        ul 
+            li 
+                a(href=`${prefixAdmin}/dashboard`) Tổng quan
+            if(role.permission.includes("post-view"))
+                li 
+                    a(href=`${prefixAdmin}/posts`) Posts
+            li 
+                a(href=`${prefixAdmin}/category`) Category
+            li 
+                a(href=`${prefixAdmin}/recycle`) Recently Deleted
+            if(role.permission.includes("account"))
+                li 
+                    a(href=`${prefixAdmin}/roles`) Role
+                li 
+                    a(href=`${prefixAdmin}/roles/permissions`) Permission
+                li 
+                    a(href=`${prefixAdmin}/accounts`) Account 
+    a(href=`${prefixAdmin}/auth/logout` class="logout") LOG OUT
+                 
+

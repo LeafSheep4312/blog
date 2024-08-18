@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug
+
+block main
+    .admin-detail-container
+                    
+        h1(class="site-title") #{blogPosts.title}
+        if(blogPosts.description)
+            p <b>!{blogPosts.description}</b>
+        if(blogPosts.content)
+            p !{blogPosts.content}
+
+        if(blogPosts.image)
+            div(class="mb-4")
+                img(
+                    src=blogPosts.image 
+                    style= "width:100px"
+                )
+
+        a(
+            href=`${prefixAdmin}/posts/edit/${blogPosts.id}`
+            class="btn btn-warning btn-sm ml-1"
+        ) Edit
+
+        table(
+        class="post-table"
+        )
+            thead 
+                tr
+                    th Updated at
+                    th Updated by
+            tbody
+                each item in blogPosts.updatedBy.reverse()
+                    tr 
+                        td #{moment(item.updatedAt).format('MMM DD YYYY HH:mm:ss')}
+                        td #{item.editor} 

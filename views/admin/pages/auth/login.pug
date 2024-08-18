@@ -1,0 +1,37 @@
+extends ../../layouts/auth.pug
+include ../../mixins/alert.pug
+
+block main
+    h1(class="site-title") LOGIN
+    +alert-error(5000)
+    form(
+        action=`${prefixAdmin}/auth/login`
+        method="POST"
+        auth-form
+    )
+
+        div(class="form-group" auth-input)
+            label(for="email") Email 
+            input(
+                type="text"
+                class="form-control"
+                id="email"
+                name="email"
+                required
+            )
+        div(class="form-group" auth-input)
+            label(for="password") Password 
+            input(
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                required
+            )
+        div(class="form-group")
+            button(
+                type="submit"
+                class="add-button"
+                auth-button
+            ) Login
+

@@ -1,0 +1,6 @@
+mixin tagList(records)
+    each record in records 
+        a(href="#") #{record.title}
+        if record.children
+            +tagList(record.children)
+            

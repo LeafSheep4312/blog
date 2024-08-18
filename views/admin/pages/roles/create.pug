@@ -1,0 +1,34 @@
+extends ../../layouts/default.pug 
+
+block main
+    h1(class="site-title") CREATE NEW ROLES
+    form(
+        action=`${prefixAdmin}/roles/create`
+        id="form-create-post"
+        method="POST"
+    )
+
+        div(class="form-group")
+            label(for="title") Title 
+            input(
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                required
+            )
+        div(class="form-group")
+            label(for="desc") Description
+            textarea(
+                class="form-control mce"
+                id="desc"
+                name="description"
+                row="5"
+            )
+        div(class="form-group")
+            button(
+                type="submit"
+                class="add-button"
+            ) CREATE
+
+    //- script(src="/admin/js/script.js")

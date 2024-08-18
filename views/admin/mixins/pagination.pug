@@ -1,0 +1,11 @@
+mixin pagination(pagination)
+    ul(class="pagination")
+        if(pagination.currentPage>1)
+            li(class="page-item")
+                button(class='page-trans' button-pagination=pagination.currentPage-1) PREVIOUS PAGE
+        - for(var i=1;i<=pagination.totalPage;i++)
+            li(class=`page-item`)
+                button(class=`page-trans ${pagination.currentPage == i ? "active" : ""}` button-pagination=i) #{i}
+        if(pagination.currentPage<pagination.totalPage)
+            li(class="page-item") 
+                button(class='page-trans' button-pagination=pagination.currentPage+1) NEXT PAGE

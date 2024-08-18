@@ -1,0 +1,31 @@
+mixin table-tree(categories, level=1)
+    each item in categories 
+        - const prefix = Array(level+1).join("-")
+        tr 
+            td #{prefix}#{item.title}#{prefix}
+            td 
+                img(
+                    src=item.image
+                    alt=item.title 
+                    width="200px"
+                    height="auto"
+                )
+            td !{item.description}
+            td #{moment(item.createdAt).format('MMM DD YYYY HH:mm:ss')}
+            td #{item.position}
+            td 
+                a(
+                    href=`${prefixAdmin}/category/detail/${item.id}`
+                    class="btn btn-secondary btn-sm" 
+                ) Detail
+                a(
+                    href=`${prefixAdmin}/category/edit/${item.id}`
+                    class="btn btn-warning btn-sm ml-1" 
+                ) Edit
+                button(
+                    data-id = item.id 
+                    delete-button
+                    class="btn btn-danger btn-sm ml-1"
+                ) Delete
+        if item.children && item.children.length > 0
+            +table-tree(item.children,level +1 )

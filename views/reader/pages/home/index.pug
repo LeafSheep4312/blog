@@ -1,0 +1,24 @@
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+
+block main 
+  .post-content
+    .grid-post 
+      each item in blogPosts
+        a(class="item-container" href=`/post/${item.id}`) 
+          h1.item-title #{item.title}
+          .create-time #{moment(item.createdAt).format('MMM DD, YYYY.')} 
+          img(
+            src=item.image
+            width="100px"
+            height="auto"
+          )
+          .description 
+            | !{item.description}
+          p.more-link READ MORE
+    +pagination(pagination)
+
+
+  script(src="/js/home.js") 
+            

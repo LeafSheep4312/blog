@@ -1,0 +1,73 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+block main
+    h1(class="site-title") CREATE NEW POST
+    +alert-error(5000)
+    form(
+        action=`${prefixAdmin}/posts/create`
+        id="form-create-post"
+        method="POST"
+        enctype="multipart/form-data"
+    )
+
+        div(class="form-group")
+            label(for="title") Title 
+            input(
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                required
+            )
+        div(class="form-group")
+            label(for="category_id") Category
+            select(
+                class="form-control"
+                id="category_id"
+                name="category_id"
+            )
+                option(value="") --Select category--
+                if(records)
+                    +select-tree(records)
+        div(class="form-group")
+            label(for="desc") Description
+            textarea(
+                class="form-control mce"
+                id="desc"
+                name="description"
+                row="5"
+            )
+        div(class="form-group")
+            label(for="content") Content
+            textarea(
+                class="form-control mce"
+                id="content"
+                name="content"
+                row="5"
+            )
+        div(class="form-group"
+            upload-image
+        )
+            label(for="image") Image 
+            input(
+                type="file"
+                class="form-control-file"
+                id="image"
+                name="image"
+                accept="image/*"
+                upload-image-input
+            )
+            img(
+            src=""
+            upload-image-preview
+            class="image-preview"
+            )
+                
+        div(class="form-group")
+            button(
+                type="submit"
+                class="add-button"
+            ) CREATE
+
+    script(src="/admin/js/script.js")

@@ -1,0 +1,32 @@
+header
+    .header
+        ul.header-menu
+          li
+            a(href="/") HOME
+          li.menu-item-has-children
+            - const path = "/blog"
+            a(href=path class="blog") BLOG
+            ul.sub-menu 
+              each item in category 
+                li
+                  a(href=`${path}/${item.slug}`) #{item.title}
+          li
+            a(href="https://www.youtube.com" target="_blank") YOUTUBE
+          li
+            a(href="/donate") ỦNG HỘ
+          li
+            a(href="/about") ABOUT ME
+        .header-contact
+            div(class="jetpack-social-navigation-genericons")
+                a(href="https://web.facebook.com/profile.php?id=100051847343685" target="_blank")
+                a(href="https://www.instagram.com/j.racs15/?hl=en" target="_blank")
+                a(href="https://www.youtube.com" target="_blank") 
+
+    .image-header 
+      h1.site-title HW
+    .site-description
+      p THE SIMPLE HARMONY
+      .jetpack-social-navigation-genericons
+        a(href="https://web.facebook.com/profile.php?id=100051847343685" target="_blank")
+        a(href="https://www.instagram.com/j.racs15/?hl=en" target="_blank")
+        a(href="https://www.youtube.com" target="_blank")
